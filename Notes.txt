@@ -1,0 +1,181 @@
+
+* Configuring Git:
+1) For setting the user name globally:
+git config --global user.name "My Name"
+
+2) For setting the user email globally:
+git config --global user.email "My Email"
+
+3) For listing the details associated with the git(This displays user name and user email):
+git config --list
+
+
+* Remote -> Github Repo
+* Local -> Our laptop or device
+
+* Cloning a Repsository:
+1) Cloning a Repo on our local machine:
+git clone <-some link->
+example: git clone https://github.com/<directory_name>.git
+For cloning a repo from github to our local machine(Whenever we are going to change something on this repo on our local machine then code editor will highlights the changes to get commited to our remote repo)
+
+* For listing the hidden files:
+ls -a
+
+* Status: displays the status of the code:
+git status
+
+* untracked files: new files that git doesn't yet track
+* modified: changed
+* staged: file is ready to be committed
+* unmodified: unchanged
+
+*               change / new file
+            (modified)   (untracked)
+                       |
+                       |
+                       |
+                      add (staged)
+                       |
+                       |
+                       |
+                     commit (unchanged)
+
+
+* Add & Commit:
+   code     ->        add          ->  commit
+                (engagement)/staged   (wedding)/commited
+
+1) add: adds new or changed files in your working directory to the Git staging area
+git add <-file name->
+For adding all files:
+git add .
+
+2) commit: It is the record of change
+git commit -m "some message"
+
+* Push command:
+1) push: upload local repo content to remote repo
+git push origin main 
+Here, origin refers to the repo, it is by-default
+and main refers to the branch
+
+* Init command:
+1) init: used to create a new git repo 
+Note: when there is no .git file then no repo is associated with this
+git init
+For initializing empty Git Repsository(Local Machine)
+
+Then do changes on this local repo.
+After doing changes, git add .
+then, git commit -m "messsage"
+after that, create a new repo on github from the website.
+Then, 
+2) git remote add origin <-Link->
+Here, origin refers to the name of repo we are refering, if we use another name instead of origin then 
+we have to also keep that name when git push orign(Here) main
+
+3) Then, git remote -v     (to verify remote)
+
+4) git branch (to check branch)
+
+Note: Github changed the name of master branch to main, so to maintain consistency, we can rename the branch master to main
+
+5)  For renaming the branch: 
+git branch -M main
+Now, master branch name changed to master, we were on the master branch that's why master branch name is changed
+
+6) Now push the repo to github: git push origin main
+If we don't want to add origin main again and again then we can write this command:
+git push -u origin main
+u represents set upstream
+so, now whenever we have to push something on this repo, we are not required to write origin main again & again. We will write:
+git push
+
+Note: It is easy to clone from github then creating from local repo then pushing to remote. So try to create a repo on remote then clone it on local then push it on remote repo that is easy.
+
+* Git Branches: Created to feature collaboration
+      Branch1 
+      /     \
+     /       \ 
+Main         Merge to main
+    \        /
+     \      /
+     Branch2
+
+* Branch commands:
+1) git branch   (to check branch)
+
+2) git branch -M main   (to rename branch)
+
+3) git checkout <-branch name->     (to navigate to another branch)
+
+4) git checkout -b <-new branch name->      (to create new branch)
+example: git checkout -b feature1
+Now, for checking the branch, we can write: git branch
+
+5) For deleting a branch: 
+git branch -d <-branchName->
+example: git branch -d feature1
+To delete a branch, we need not to be on the current branch
+
+NOTE: When we have updated any branch then we will follow below steps:
+i) First be on the branch, check branch, use git branch, if on other branch, then navigate to this branch using git checkout <-branchName->
+ii) Now, make changes that you want on this branch
+iii) After making changes, add this changes to your branch by git add .
+iv) Commit this changes, git commit -m "changes added on this branch"
+v) Now, switch to another branch and see that there are no changes visible which we have added on our previous branch. Now, it means that we need to push that changes to our main.
+vi) Switch back to previous branch.
+vii) and apply, git push origin branch1
+
+
+* Merging Code:
+1) git diff <-branchName->      (to compare commits, branches, file & more)
+example: We are on branch1 and we want to see the difference in changes with branch main then we will write:
+git diff main
+
+2) For merging:
+i) WAY1:
+git merge <-branchName->         (to merge 2 branches)
+example: we are on branch1 and we need to merge with this branch with main, then we will write:
+git merge main
+
+ii) WAY2; Using PR(Pull Request)
+Pull Request: It lets you tell others about changes that you have pushed to a branch in a repo on github.
+Open github.
+Then click on compare & Pull Request.
+Then create commit message.
+and create pull Request.
+Now, if there are no commits then github will show option for merging the branch.
+Click on "Confirm merge"
+Uptil this step, we have made changes on the remote Repsository. So, to make changes on local Repsository, we need to use Pull command.
+
+* Pull Command: used to fetch and download content from a remote repo and immediately update the local repo to match that content
+git pull origin main
+
+* Resolving Merge Conflicts: An event that takes place when Git is unable to automatically resolve differences in code between two commits.
+This should be resolved manually.
+
+* Undoing changes:
+Case1: staged changes. Changes are in staged area.
+Now, we don't want to add them.
+For removing the add changes, 
+git reset <-fileName->          (if we wan't to reset the changes from any particular filename)
+git reset                       (if we want to reset all the add changes)
+
+Case2: committed changes (for one commit)
+git reset HEAD~1                (for removing the latest commit)
+
+NOTE: To check all commits:
+git log
+
+Case3: commited changes (for many commits)
+git reset <-commit hash->               (for going back to any commit using its hash code)
+git reset --hard <-commit hash->   (for going back to any commit and also making the change on VS code)
+
+* Fork: 
+A fork is a new repsository that shares code and visibility settings with the original "upstream" repository.
+Fork is a rough copy.
+
+
+
